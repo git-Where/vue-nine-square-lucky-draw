@@ -1,12 +1,63 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+    <draw :list="list" :win-index="winIndex">
+      <template #item='itemScope'>
+        <p>用户自己的结构{{itemScope.itemData.text}}</p>
+      </template>
+      <template #btn>
+        <span>用户自己的按钮</span>
+      </template>
+    </draw>
 </template>
+
+<script>
+import { defineComponent, ref } from 'vue'
+export default defineComponent({
+  name:'App',
+  setup(){
+    const list = ref(
+      [
+        {
+          id: 0,
+          text: "奖品1",
+        },
+        {
+          id: 1,
+          text: "奖品2",
+        },
+        {
+          id: 2,
+          text: "奖品3",
+        },
+        {
+          id: 3,
+          text: "奖品4",
+        },
+        {
+          id: 4,
+          text: "奖品5",
+        },
+        {
+          id: 5,
+          text: "奖品6",
+        },
+        {
+          id: 6,
+          text: "奖品7",
+        },
+        {
+          id: 7,
+          text: "奖品8",
+        },
+      ]
+    )
+    const winIndex = ref(5)
+    return {
+      list,
+      winIndex
+    }
+  }
+})
+</script>
 
 <style>
 #app {
@@ -16,18 +67,5 @@
   text-align: center;
   color: #2c3e50;
 }
-
-/* #nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-} */
 </style>
 

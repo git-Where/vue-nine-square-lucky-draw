@@ -21,49 +21,52 @@
   </div>
 </template>
 
-<script>
-import { ref, computed } from "vue";
-export default {
-  name: "HelloWorld",
+<script lang="ts">
+import { defineComponent, ref, computed } from 'vue';
+export default defineComponent({
+  name:'Draw',
   props: {
-    list: Array,
+    list: Array, // 传进来的奖品列表
+    winIndex: Number // 传进来的中奖索引
   },
   setup(props) {
-    let activeIndex = ref(null); //{value}
-    let cj = ref(5);
-    let timer = null;
-    let fn = function (item) {
-      if (item.id !== "btn") return;
-      activeIndex.value = null;
-      cj.value = null;
-      setTimeout(() => {
-        cj.value = Math.floor(Math.random() * 8);
-        console.log(cj, "应该中奖");
-      }, 1000);
-      move(10);
-    };
-    let move = function (time) {
+    const activeIndex = ref(0); //{value}
+    const cj = ref(props.winIndex); // 中奖的索引
+    let timer;
+    function move(time) {
       if (time > 600) {
-        if (activeIndex.value !== cj.value) {
+        if (activeIndex.value !== cj.value) { // 如果选中索引跟预期中奖索引不一致，则继续转圈
           timer = setTimeout(() => {
-            let n = activeIndex.value + 1;
+            const n = activeIndex.value + 1;
             activeIndex.value = n % 8;
             move(time + time * 0.05);
           }, time);
-        } else {
+        } else { // 如果选中索引跟预期中奖索引一致，则中奖
           console.log("中奖了", cj);
         }
       } else {
         timer = setTimeout(() => {
-          let n = activeIndex.value + 1;
+          const n = activeIndex.value + 1;
           activeIndex.value = n % 8;
           move(time + time * 0.1);
         }, time);
       }
-    };
+    }
+    // 点击抽奖
+    function fn(item) {
+      if (item.id !== "btn") return;
+      activeIndex.value = null;
+      cj.value = null;
+      setTimeout(() => {
+        // cj.value = Math.floor(Math.random() * 8); // 随机生成中奖索引
+        cj.value = 5; // 中奖索引为5
+        console.log(cj.value, "应该中奖");
+      }, 1000);
+      move(10);
+    }
 
-    let renderList = computed(() => {
-      let ary =
+    const renderList = computed(() => { //把中奖清单列表横向排列
+      const ary =
         props.list &&
         props.list.map((item, index) => {
           switch (index) {
@@ -112,10 +115,9 @@ export default {
       renderList,
     };
   },
-};
+})
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .cj_box {
   width: 80vw;
@@ -129,6 +131,7 @@ export default {
     width: 25vw;
     height: 25vw;
     background: #eee;
+    list-style: none;
   }
   li.active {
     background-color: rgb(233, 159, 159);
