@@ -5,8 +5,7 @@
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
-        "lint": "vue-cli-service lint",
-        "commitmsg": "commitlint -e $GIT_PARAMS"
+        "lint": "vue-cli-service lint"
     },
     "dependencies": {
         "less": "^4.1.1",
@@ -26,6 +25,7 @@
         "@vue/cli-service": "^4.5.11",
         "@vue/compiler-sfc": "^3.0.5",
         "@vue/eslint-config-typescript": "^5.1.0",
+        "cz-conventional-changelog": "^3.3.0",
         "eslint": "^6.8.0",
         "eslint-plugin-vue": "^7.5.0",
         "husky": "^4.3.8",
@@ -51,10 +51,5 @@
         "> 1%",
         "last 2 versions",
         "not dead"
-    ],
-    "config": {
-        "commitizen": {
-            "path": "cz-customizable"
-        }
-    }
+    ]
 }
