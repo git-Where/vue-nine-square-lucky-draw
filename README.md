@@ -2,7 +2,7 @@
 # lucky
 
 # 界面展示
-![](https://github-other.oss-cn-beijing.aliyuncs.com/nine.jpg?versionId=CAEQDhiBgMCq6Y7EuxciIGJkZTFhYTEwZjc2NDQ1NGFhMWJlY2IwM2E5YzQ1Njcy)
+![页面](https://github-other.oss-cn-beijing.aliyuncs.com/nine.jpg?versionId=CAEQDhiBgMCq6Y7EuxciIGJkZTFhYTEwZjc2NDQ1NGFhMWJlY2IwM2E5YzQ1Njcy)
 
 ## Project setup
 ```
@@ -28,4 +28,4 @@ npm run lint # yarn lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### clone项目地址
-See [九宫格抽奖](https://github.com/git-Where/vue-nine-square-lucky-draw.git).
+git clone [https://github.com/git-Where/vue-nine-square-lucky-draw.git](https://github.com/git-Where/vue-nine-square-lucky-draw.git).
