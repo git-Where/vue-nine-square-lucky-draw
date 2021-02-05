@@ -9,8 +9,12 @@
     </draw>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from 'vue'
+interface ListArry {
+  id: any;
+  text: string;
+}
 export default defineComponent({
   name:'App',
   setup(){
@@ -50,7 +54,7 @@ export default defineComponent({
         },
       ]
     )
-    const winIndex = ref(5)
+    const winIndex = ref(5);
     return {
       list,
       winIndex

@@ -72,41 +72,47 @@ export default defineComponent({
           switch (index) {
             case 3:
               return {
-                ...props.list[7],
+                ...props.list[7] as {},
                 index: 7,
               };
             case 4:
               return {
-                ...props.list[3],
+                ...props.list[3] as {},
                 index: 3,
               };
             case 5:
               return {
-                ...props.list[6],
+                ...props.list[6] as {},
                 index: 6,
               };
             case 6:
               return {
-                ...props.list[5],
+                ...props.list[5] as {},
                 index: 5,
               };
             case 7:
               return {
-                ...props.list[4],
+                ...props.list[4] as {},
                 index: 4,
               };
             default:
               return {
-                ...item,
+                ...item as {},
                 index: index,
               };
           }
         });
-      return ary
-        .slice(0, 4)
-        .concat({ id: "btn", text: "开始抽奖" })
-        .concat(ary.slice(4));
+      // return ary
+      //   .slice(0, 4)
+      //   .concat({ id: "btn", text: "开始抽奖" })
+      //   .concat(ary.slice(4));
+      const conIndex4 = [{ id: 'btn', text: "开始抽奖" }]
+      const ary1 = ary.slice(0, 4)
+      const ary2 = ary.slice(4)
+      const aryObj = []
+      return aryObj.concat(ary1).concat(conIndex4).concat(ary2)
     });
+    console.log(renderList+',,,,,')
     return {
       activeIndex,
       cj,
