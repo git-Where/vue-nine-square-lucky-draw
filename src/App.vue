@@ -1,5 +1,5 @@
 <template>
-    <draw :list="list" :win-index="winIndex">
+    <draw :list="list" :win-index="winIndex" @save="save">
       <template #item='itemScope'>
         <p>用户自己的结构{{itemScope.itemData.text}}</p>
       </template>
@@ -12,13 +12,13 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 interface ListArry {
-  id: any;
+  id: number | string;
   text: string;
 }
 export default defineComponent({
   name:'App',
   setup(){
-    const list = ref(
+    const list = ref<ListArry[]>(
       [
         {
           id: 0,
@@ -54,10 +54,15 @@ export default defineComponent({
         },
       ]
     )
-    const winIndex = ref(5);
+    const winIndex = ref<number>(5);
+
+    function save(){
+      alert('我中奖了！')
+    };
     return {
       list,
-      winIndex
+      winIndex,
+      save
     }
   }
 })

@@ -29,10 +29,11 @@ export default defineComponent({
     list: Array, // 传进来的奖品列表
     winIndex: Number // 传进来的中奖索引
   },
-  setup(props) {
-    const activeIndex = ref(0); //{value}
-    const cj = ref(props.winIndex); // 中奖的索引
-    let timer;
+  emits:['save'],
+  setup(props,context) {
+    const activeIndex = ref<number>(0); //{value}
+    const cj = ref<number>(props.winIndex); // 中奖的索引
+    let timer:any;
     function move(time) {
       if (time > 600) {
         if (activeIndex.value !== cj.value) { // 如果选中索引跟预期中奖索引不一致，则继续转圈
@@ -43,6 +44,7 @@ export default defineComponent({
           }, time);
         } else { // 如果选中索引跟预期中奖索引一致，则中奖
           console.log("中奖了", cj);
+          context.emit('save')
         }
       } else {
         timer = setTimeout(() => {
@@ -112,7 +114,6 @@ export default defineComponent({
       const aryObj = []
       return aryObj.concat(ary1).concat(conIndex4).concat(ary2)
     });
-    console.log(renderList+',,,,,')
     return {
       activeIndex,
       cj,
